@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root><Element><name>First Name</name><id>1</id><type>text</type></Element><Element><name>Last Name</name><id>2</id><type>text</type></Element><Element><name>Age</name><id>3</id><type>text</type></Element><Element><name>Gender</name><id>4</id><type>text</type></Element><Element><name>Degree</name><id>5</id><type>text</type></Element><Element><name>Address</name><id>6</id><type>text</type></Element></root>
