@@ -3,7 +3,7 @@
     <xsl:template match="/">
         <html>
             <head>
-                <script type='text/javascript' src="temp.js">
+                <script type='text/javascript' src="templateTransform.js">
                 </script>
             </head>
             <body>

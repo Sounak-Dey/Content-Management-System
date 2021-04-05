@@ -1,38 +1,56 @@
 package com.example.cmsproject.transform;
 
-import net.sf.saxon.s9api.*;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
+import javax.xml.transform.Source;
+
+import javax.xml.transform.Transformer;
+
+import javax.xml.transform.TransformerFactory;
+
+import javax.xml.transform.stream.StreamResult;
 
 import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.io.InputStream;
 
 public class templateTransform {
-    public static void main(String[] args) {
-        Processor proc = new Processor(false);
-        XsltCompiler comp = proc.newXsltCompiler();
 
-        ClassLoader classLoader = XsltCompiler.class.getClassLoader();
-        // load xsl file from java project
+    public void trans(String xslfile,String xmlfile) throws Exception {
 
-        InputStream xsl = classLoader.getResourceAsStream("templateTransform.xsl");
-        // load xml file from java project
-        InputStream xmlInput = classLoader.getResourceAsStream("Admission.xml");
+
+        String resultpath = "/home/manu/cms/cmsproject/src/main/webapp/";
+        String result = xmlfile.substring(0,xmlfile.length()-4);
+        result = result+".html";
+        result = resultpath+result;
+        String path = "/home/manu/cms/cmsproject/src/main/resources/";
+        xslfile = path+xslfile;
+        xmlfile = path+xmlfile;
+
         try {
-            XsltExecutable exp = comp.compile(new StreamSource(xsl));
 
-            XdmNode source = proc.newDocumentBuilder().build(new StreamSource(xmlInput));
+            TransformerFactory tFactory = TransformerFactory.newInstance();
 
-            String outputDir = System.getProperty("user.home");
-            // create a result.html file as result in the user home directory
-            Serializer out = proc.newSerializer(new File(outputDir, "result.html"));
-            out.setOutputProperty(Serializer.Property.METHOD, "html");
-            out.setOutputProperty(Serializer.Property.INDENT, "yes");
-            XsltTransformer trans = exp.load();
-            trans.setInitialContextNode(source);
-            trans.setDestination(out);
-            trans.transform();
-        } catch (SaxonApiException e) {
+            Source xslDoc = new StreamSource(xslfile);
+
+            Source xmlDoc = new StreamSource(xmlfile);
+
+
+            String outputFileName = result;
+
+            OutputStream htmlFile = new FileOutputStream(outputFileName);
+
+            Transformer transform = tFactory.newTransformer(xslDoc);
+
+            transform.transform(xmlDoc, new StreamResult(htmlFile));
+
+        } catch (Exception e)
+
+        {
+
             e.printStackTrace();
+
         }
+
     }
+
 }

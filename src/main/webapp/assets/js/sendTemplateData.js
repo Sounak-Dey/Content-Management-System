@@ -1,7 +1,9 @@
 async function send() {
     var formData = document.getElementById("formData");
-    var object = {};
+    var title = document.getElementById("title").value;
+    var object = {title};
     var jsonarr = [];
+    jsonarr.push(object);
     var j = 1;
     for (var i = 0; i < formData.length; i = i + 2) {
         object = {
@@ -25,6 +27,11 @@ async function send() {
         }
 
     );
+    if(response.status === 200){
+        alert("Template Made");
+        formData.reset();
+        title.clear();
+    }
     console.log(response);
     console.log(json);
 }
