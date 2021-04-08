@@ -1,7 +1,10 @@
 package com.example.cmsproject.transform;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.xml.transform.Source;
 
@@ -21,10 +24,16 @@ public class templateTransform {
         String resultpath = "/home/manu/cms/cmsproject/src/main/webapp/";
         String result = xmlfile.substring(0,xmlfile.length()-4);
         result = result+".html";
+        File file = new File("/home/manu/cms/cmsproject/src/main/Content.txt");
+        FileWriter fileWriter = new FileWriter(file,true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(result);
+        fileWriter.close();
         result = resultpath+result;
         String path = "/home/manu/cms/cmsproject/src/main/resources/";
         xslfile = path+xslfile;
         xmlfile = path+xmlfile;
+        String sendingString;
 
         try {
 
@@ -37,7 +46,10 @@ public class templateTransform {
 
             String outputFileName = result;
 
+
             OutputStream htmlFile = new FileOutputStream(outputFileName);
+
+            sendingString = new String(htmlFile.toString());
 
             Transformer transform = tFactory.newTransformer(xslDoc);
 

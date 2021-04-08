@@ -3,15 +3,15 @@
     <xsl:template match="/">
         <html>
             <head>
-                <script type='text/javascript' src="templateTransform.js">
+                <script type='text/javascript' src="sendContentData.js">
                 </script>
             </head>
             <body>
-                <form>
+                <form id="formid">
                     <xsl:for-each select="root/Element">
                         <xsl:if test="type='text'">
                             <label>
-                                <xsl:value-of select="name"/> :
+                                 <xsl:value-of select="name"/> :
                             </label>
                             <br></br>
                             <input type="text" id ="{id}" size="20" />
@@ -27,7 +27,7 @@
                         </xsl:if>
                     </xsl:for-each>
                 </form>
-                <input type="Submit" name = "Submit"/>
+                <input type="submit" value="Submit" onclick="send()" />
             </body>
         </html>
     </xsl:template>

@@ -30,8 +30,8 @@ async function send() {
     if(response.status === 200){
         alert("Template Made");
         formData.reset();
-        title.clear();
     }
     console.log(response);
     console.log(json);
+    window.location.href="content.html";
 }

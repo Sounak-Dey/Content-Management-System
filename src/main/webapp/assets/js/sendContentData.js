@@ -19,7 +19,7 @@ async function send() {
     var json = JSON.stringify(jsonarr);
     var temp = JSON.stringify(jsonarr[0]);
 
-    let response = await fetch('api/students/login', {
+    let response = await fetch('api/content/xml', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

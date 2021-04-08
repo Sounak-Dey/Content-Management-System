@@ -19,7 +19,7 @@ public class templateController {
     @Path("xml")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response transferTemplate(String json) throws Exception {
+    public Response transferContent(String json) throws Exception {
         Boolean var = jsonToXML.convert(json,"root");
         if(var == false){
             return Response.noContent().build();
