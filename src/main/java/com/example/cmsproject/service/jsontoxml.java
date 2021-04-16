@@ -28,8 +28,8 @@ public class jsontoxml {
         System.out.println(xml);
        // templateTransform transform = new templateTransform();
        // transform.tranform("templateTransform.xsl","/Admission.xml");
-        templateTransform templateTransform = new templateTransform();
-        templateTransform.trans("templateTransform.xsl",xmlfile);
+       // templateTransform templateTransform = new templateTransform();
+       // templateTransform.trans("templateTransform.xsl",xmlfile);
         if(xml.length()!=0){
             return true;
         }

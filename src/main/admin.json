@@ -1,0 +1,12 @@
+[
+  {
+    "username": "templateadmin",
+    "password": "password",
+    "type": "template"
+},
+  {
+    "username": "contentadmin",
+    "password": "password",
+    "type": "content"
+  }
+]

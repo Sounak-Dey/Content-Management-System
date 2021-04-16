@@ -46,12 +46,56 @@
         console.log(ddlCustomers.options[ddlCustomers.selectedIndex].text);
     }
 
-    function openhtml(){
+    async function openhtml() {
         var html = document.getElementById("ddlCustomers");
         var result = html.options[html.selectedIndex].text;
-        window.location.href=result;
+        let response = await fetch('api/content/html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                }
+                , body:result
+            }
+            )
+        ;
+        let temp = (await response.text()).valueOf();
+        console.log(response);
+        console.log(temp);
+        var templateData = JSON.parse(temp);
+        var templateJson = templateData["root"];
+        console.log(templateData["root"]);
+        var br = document.createElement("br");
+        var form = document.createElement("form");
+        form.setAttribute("id","form");
+        var countKey = Object.keys(templateJson.Element).length;
+        console.log(templateJson.Element[0].name);
+        for(var i=0;i<countKey;i++){
+            var FN = document.createElement("input");
+            FN.setAttribute("type", "text");
+            FN.setAttribute("name", templateJson.Element[i].name);
+            FN.setAttribute("placeholder", templateJson.Element[i].name);
+            form.appendChild(FN);
+            form.appendChild(br.cloneNode());
+        }
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        form.appendChild(s);
+        s.addEventListener("click", function () {
+            send();
+        });
+        var title = document.createElement("input");
+        title.setAttribute("type","input");
+        title.setAttribute("id","title");
+        form.appendChild(title);
+        document.getElementsByTagName("body")[0]
+            .appendChild(form);
+
+
+
     }
 </script>
+<script src="assets/js/sendContentData.js"></script>
 <input type="submit" value="Submit" onclick="openhtml()" />
 </body>
 </html>
