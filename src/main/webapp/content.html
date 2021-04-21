@@ -1,6 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
     <title></title>
+    <script language="JavaScript" type="text/javascript" src="assets/js/richtext.js"></script>
 </head>
 <body>
 <input type="button" id="btnGenerate" value="Populate DropDownList" onclick="PopulateDropDownList()" />
@@ -68,14 +69,27 @@
         var form = document.createElement("form");
         form.setAttribute("id","form");
         var countKey = Object.keys(templateJson.Element).length;
-        console.log(templateJson.Element[0].name);
-        for(var i=0;i<countKey;i++){
-            var FN = document.createElement("input");
-            FN.setAttribute("type", "text");
-            FN.setAttribute("name", templateJson.Element[i].name);
-            FN.setAttribute("placeholder", templateJson.Element[i].name);
-            form.appendChild(FN);
-            form.appendChild(br.cloneNode());
+        if(!(Array.isArray(templateJson.Element))){
+                console.log(templateJson.Element.name);
+                var FN = document.createElement("input");
+                FN.setAttribute("type", "text");
+                FN.setAttribute("name", templateJson.Element.name);
+                FN.setAttribute("placeholder", templateJson.Element.name);
+                FN.setAttribute("id", "mytextarea");
+                form.appendChild(FN);
+                form.appendChild(br.cloneNode());
+        }
+        else {
+            console.log(templateJson.Element[0].name);
+            for (var i = 0; i < countKey; i++) {
+                var FN = document.createElement("input");
+                FN.setAttribute("type", "text");
+                FN.setAttribute("name", templateJson.Element[i].name);
+                FN.setAttribute("placeholder", templateJson.Element[i].name);
+                FN.setAttribute("id", "mytextarea");
+                form.appendChild(FN);
+                form.appendChild(br.cloneNode());
+            }
         }
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
