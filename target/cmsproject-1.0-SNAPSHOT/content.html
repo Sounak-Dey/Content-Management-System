@@ -2,6 +2,9 @@
 <head>
     <title></title>
     <script language="JavaScript" type="text/javascript" src="assets/js/richtext.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
 </head>
 <body>
 <input type="button" id="btnGenerate" value="Populate DropDownList" onclick="PopulateDropDownList()" />
@@ -62,6 +65,7 @@
         let temp = (await response.text()).valueOf();
         console.log(response);
         console.log(temp);
+        var flag = 0;
         var templateData = JSON.parse(temp);
         var templateJson = templateData["root"];
         console.log(templateData["root"]);
@@ -71,24 +75,56 @@
         var countKey = Object.keys(templateJson.Element).length;
         if(!(Array.isArray(templateJson.Element))){
                 console.log(templateJson.Element.name);
-                var FN = document.createElement("input");
-                FN.setAttribute("type", "text");
-                FN.setAttribute("name", templateJson.Element.name);
-                FN.setAttribute("placeholder", templateJson.Element.name);
-                FN.setAttribute("id", "mytextarea");
-                form.appendChild(FN);
-                form.appendChild(br.cloneNode());
+                localStorage.setItem("countkey",1);
+                for (var i = 0; i < countKey; i++) {
+                    if (templateJson.Element.type == "Rich Text") {
+                        flag = 1;
+                        var TA = document.createElement("textarea");
+                        localStorage.setItem("RTElabel",templateJson.Element.name);
+                        TA.setAttribute("id", "mytextarea");
+                        TA.setAttribute("name",templateJson.Element[i].name);
+                        form.appendChild(TA);
+                        form.appendChild(br.cloneNode());
+                    } else {
+                        var FN = document.createElement("input");
+                        FN.setAttribute("name", templateJson.Element.name);
+                        FN.setAttribute("placeholder", templateJson.Element.name);
+                        if(templateJson.Element.type == "Date"){
+                            FN.setAttribute("type","date");
+                        }
+                        else {
+                            FN.setAttribute("type", "text");
+                        }
+                        form.appendChild(FN);
+                        form.appendChild(br.cloneNode());
+                    }
+                }
         }
         else {
             console.log(templateJson.Element[0].name);
+            localStorage.setItem("countkey",countKey);
             for (var i = 0; i < countKey; i++) {
-                var FN = document.createElement("input");
-                FN.setAttribute("type", "text");
-                FN.setAttribute("name", templateJson.Element[i].name);
-                FN.setAttribute("placeholder", templateJson.Element[i].name);
-                FN.setAttribute("id", "mytextarea");
-                form.appendChild(FN);
-                form.appendChild(br.cloneNode());
+                if (templateJson.Element[i].type == "Rich Text") {
+                    flag = 1;
+                    var TA = document.createElement("input");
+                    localStorage.setItem("RTElabel",templateJson.Element[i].name);
+                    TA.setAttribute("id", "mytextarea");
+                    TA.setAttribute("name",templateJson.Element[i].name);
+                    form.appendChild(TA);
+                    form.appendChild(br.cloneNode());
+                } else {
+                    var FN = document.createElement("input");
+                    FN.setAttribute("name", templateJson.Element[i].name);
+                    FN.setAttribute("placeholder", templateJson.Element[i].name);
+                    if(templateJson.Element[i].type == "Date"){
+                        FN.setAttribute("type","date");
+                    }
+                    else {
+                        FN.setAttribute("type", "text");
+                    }
+                    form.appendChild(FN);
+                    form.appendChild(br.cloneNode());
+                }
             }
         }
         var s = document.createElement("input");
@@ -96,6 +132,13 @@
         s.setAttribute("value", "Submit");
         form.appendChild(s);
         s.addEventListener("click", function () {
+            if(flag == 1) {
+                var myContent = tinymce.get("mytextarea").getContent({format: "text"});
+                localStorage.setItem("richtext", myContent);
+            }
+            else{
+                localStorage.setItem("richtext","norichtext");
+            }
             send();
         });
         var title = document.createElement("input");
@@ -104,11 +147,16 @@
         form.appendChild(title);
         document.getElementsByTagName("body")[0]
             .appendChild(form);
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+
 
 
 
     }
 </script>
+<script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 <script src="assets/js/sendContentData.js"></script>
 <input type="submit" value="Submit" onclick="openhtml()" />
 </body>

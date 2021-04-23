@@ -1,24 +1,55 @@
 async function send() {
+    var t= localStorage.getItem("richtext");
+    var count = localStorage.getItem("countkey");
     var x = document.getElementById("form");
-    var y = document.getElementById("title")
+    var y = document.getElementById("title");
     var object = {};
     var temp = {title:y.value};
     var jsonarr = [temp];
     var j = 1;
     console.log(y.value);
-    for (var i = 0; i < x.length; i++) {
+    if(t != "norichtext") {
+        for (var i = 0; i < count - 1; i++) {
+            object = {
+                Element: {
+                    id: j,
+                    type: "text",
+                    label: x.elements[i].placeholder,
+                    name: x.elements[i].value,
+                    title: y.value,
+                }
+            };
+            jsonarr.push(object);
+            j = j + 1;
+        }
+        var lab = localStorage.getItem("RTElabel");
         object = {
             Element: {
                 id: j,
-                type: "text",
-                label: x.elements[i].placeholder,
-                name: x.elements[i].value,
+                type: "richtext",
+                label: lab,
+                name: t,
                 title: y.value,
             }
         };
         jsonarr.push(object);
-        j = j + 1;
     }
+    else{
+        for (var i = 0; i < x.length; i++) {
+            object = {
+                Element: {
+                    id: j,
+                    type: "text",
+                    label: x.elements[i].placeholder,
+                    name: x.elements[i].value,
+                    title: y.value,
+                }
+            };
+            jsonarr.push(object);
+            j = j + 1;
+        }
+    }
+
     var json = JSON.stringify(jsonarr);
 
     try {
