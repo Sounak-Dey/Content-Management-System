@@ -82,7 +82,7 @@
                         var TA = document.createElement("textarea");
                         localStorage.setItem("RTElabel",templateJson.Element.name);
                         TA.setAttribute("id", "mytextarea");
-                        TA.setAttribute("name",templateJson.Element[i].name);
+                        TA.setAttribute("name",templateJson.Element[i].name)    ;
                         form.appendChild(TA);
                         form.appendChild(br.cloneNode());
                     } else {
