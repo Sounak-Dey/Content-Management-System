@@ -19,7 +19,7 @@ public class jsontoxml {
             xml += org.json.XML.toString(jsonobject);
         }
         xml += "</" + root + ">";
-        String filepath = "/home/manu/cms/cmsproject/src/main/resources/";
+        String filepath = "/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/resources/";
         filepath += xmlfile;
         File file = new File(filepath);
         FileWriter  fileWriter = new FileWriter(file);

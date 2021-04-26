@@ -18,7 +18,7 @@ public class xmltojson {
 
     public String convert(String filename) throws IOException {
         String jsonString = "";
-        String path = "/home/manu/cms/cmsproject/src/main/resources/";
+        String path = "/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/resources/";
         filename = path+filename;
         BufferedReader br = new BufferedReader(new FileReader(new File(filename)));
         String line;

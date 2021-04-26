@@ -24,7 +24,7 @@ public class adminController {
 
             JSONParser jsonParser = new JSONParser();
             JSONObject clientjson = (JSONObject) jsonParser.parse(json);
-            FileReader reader = new FileReader("/home/manu/cms/cmsproject/src/main/admin.json");;
+            FileReader reader = new FileReader("/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/admin.json");
             //Read JSON file
             Object obj = jsonParser.parse(reader);
             JSONArray admin = (JSONArray) obj;

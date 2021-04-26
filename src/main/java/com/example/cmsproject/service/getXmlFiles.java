@@ -10,7 +10,7 @@ import java.util.List;
 public class getXmlFiles {
     public String getfiles(){
         List<String> filelist = new ArrayList<String>();
-        File[] files = new File("/home/manu/cms/cmsproject/src/main/resources/").listFiles(new FilenameFilter() {
+        File[] files = new File("/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/resources/").listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
                 return name.endsWith(".xml");

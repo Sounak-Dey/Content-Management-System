@@ -21,16 +21,16 @@ public class templateTransform {
     public void trans(String xslfile,String xmlfile) throws Exception {
 
 
-        String resultpath = "/home/manu/cms/cmsproject/src/main/webapp/";
+        String resultpath = "/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/webapp/";
         String result = xmlfile.substring(0,xmlfile.length()-4);
         result = result+".html";
-        File file = new File("/home/manu/cms/cmsproject/src/main/Content.txt");
+        File file = new File("/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/Content.txt");
         FileWriter fileWriter = new FileWriter(file,true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.write(result);
         fileWriter.close();
         result = resultpath+result;
-        String path = "/home/manu/cms/cmsproject/src/main/resources/";
+        String path = "/home/sounak/Desktop/DM/MajorProject/cmsproject/src/main/resources/";
         xslfile = path+xslfile;
         xmlfile = path+xmlfile;
         String sendingString;

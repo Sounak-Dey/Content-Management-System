@@ -6,10 +6,11 @@
     <script src="assets/js/sendTemplateData.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/template.css">
 
 </head>
-<body>
-<label style="margin-left: 60px;margin-bottom: 25px;margin-top: 25px">Enter Title</label>
+<body class="bod">
+<label style="margin-bottom: 4%;margin-top: 25px">Enter Title</label>
 <input class="html-editor" id="title"/>
 <div class="container">
     <div class="row">
@@ -34,7 +35,10 @@
     </div>
 </div>
 
-<input type="submit" value="Submit" onclick="send()" />
+<div class="but">
+    <input style="margin-right: 2%; margin-left: 2.5%" type="submit" value="Submit" onclick="send()" />
+    <button style="margin-left: 2%" onclick="location.replace('login.html')">Log Out</button>
+</div>
 
 </body>
 </html>
