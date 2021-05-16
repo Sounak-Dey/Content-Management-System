@@ -1,16 +1,20 @@
-body {
+body{
+    background: linear-gradient(90deg,  #86cfda, #0f6674);
+}
+
+.bod {
     /*padding-top: 5%;*/
     padding-left: 22.5%;
-
+    /*background: linear-gradient(90deg,  #86cfda, #0f6674);*/
     border-radius: 2rem;
     margin-top:5%;
     /*margin-bottom: 8%;*/
     margin-left: 20%;
     margin-right: 20%;
+
     background-color: #ffffff;
-    /*background-color: #fcba03;*/
     /*padding: 1rem 1rem 1rem 1rem;*/
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1) ;
+    box-shadow:  15px 15px 27px #414147, -15px -15px 27px #424245;
 
 }
 

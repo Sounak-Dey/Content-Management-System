@@ -1,4 +1,21 @@
+body{
+    background: linear-gradient(90deg,  #86cfda, #0f6674);
+}
+
 .cont{
     margin-left: 30%;
     margin-top: 13%;
+}
+
+.btn{
+    background-color: #e0a800;
+    width: 10%;
+    height: 200%;
+    /*background-color: rgb(56, 168, 39);*/
+    border-radius: 0.6rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+    color: #000000;
+    border: 0px;
+    box-shadow:  15px 15px 27px #414144;
 }
